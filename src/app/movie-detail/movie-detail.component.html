@@ -1,0 +1,19 @@
+<div *ngIf="movie" class="details">
+    <h3>{{movie.name}}. Details:</h3>
+    <table style="width: 100%">
+        <tr>
+            <td>name:</td>
+            <td>
+                <input [(ngModel)]="movie.name" placeholder="name" />
+            </td>
+        </tr>
+        <tr>
+            <td>releases:</td>
+            <td>
+                <input [(ngModel)]="movie.releaseYear" placeholder="releases" />
+            </td>
+        </tr>
+    </table>
+    <button (click)="save()">Save</button>
+    <button (click)="goBack()">Go back</button>
+</div>
