@@ -5,11 +5,11 @@ import { MovieService } from '../movie.service';
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
-  styleUrl: './movies.component.css'
+  styleUrls: ['./movies.component.css']  
 })
 export class MoviesComponent implements OnInit {
   moviesList: Movie[] = [];
-  newMovie: Movie = { id: 0, name: 'aaaa', releaseYear: 0 };
+  newMovie: Movie = { id: 0, name: '', releaseYear: 0 };
   selectedMovie: Movie | undefined;
 
   constructor(private movieService: MovieService) {

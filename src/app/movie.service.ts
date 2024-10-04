@@ -64,4 +64,15 @@ export class MovieService {
         catchError(error => of(null))
       );
     }
+
+    searchMovie(typedString: string): Observable<Movie[]> {
+      if(!typedString.trim()){
+        return of([]);
+      }
+
+      return this.http.get<Movie[]>(`${this.movieURL}?name_like=${typedString}`).pipe(
+        tap(searchMovie => console.log(`Search movie = ${JSON.stringify(searchMovie)}`)),
+        catchError(error => of([]))
+      );
+    }
 }

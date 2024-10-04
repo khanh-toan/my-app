@@ -11,6 +11,7 @@ import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MovieSearchComponent } from './movie-search/movie-search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     MoviesComponent,
     MovieDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    MovieSearchComponent
   ],
   imports: [
     BrowserModule,

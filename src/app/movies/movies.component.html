@@ -1,29 +1,22 @@
 <h3>Add New Movie</h3>
-<form (submit)="addMovie()">
-  <!-- Two-way binding với ngModel -->
-  <input [(ngModel)]="newMovie.name" [ngModelOptions]="{standalone: true}" type="text" placeholder="Movie Name" required />
-  <input [(ngModel)]="newMovie.releaseYear" [ngModelOptions]="{standalone: true}" type="number" placeholder="Release Year" required />
-  <button type="submit">Add Movie</button>
+<form #movieForm="ngForm" (ngSubmit)="add(movieName.value, year.value)">
+  <div>
+    <label for="movieName">New movie's name:</label>
+    <input id="movieName" name="movieName" ngModel required #movieName="ngModel" />
+    <div *ngIf="movieName.invalid && (movieName.dirty || movieName.touched)">
+      <small *ngIf="movieName.errors?.['required']">Name is required.</small>
+    </div>
+  </div>
+  <div>
+    <label for="releaseYear">Year:</label>
+    <input id="releaseYear" name="releaseYear" ngModel required pattern="[0-9]*" #year="ngModel" />
+    <div *ngIf="year.invalid && (year.dirty || year.touched)">
+      <small *ngIf="year.errors?.['required']">Release year is required.</small>
+      <small *ngIf="year.errors?.['pattern']">Must be a valid number.</small>
+    </div>
+  </div>
+  <button type="submit" [disabled]="movieForm.invalid">Add</button>
 </form>
-<div>
-  <table>
-    <tr>
-      <td>New movie's name:</td>
-      <td>
-        <input #movieName placeholder="name">
-      </td>
-    </tr>
-    <tr>
-      <td>year:</td>
-      <td>
-        <input #year placeholder="name">
-      </td>
-    </tr>
-    <tr>
-      <button (click)="add(movieName.value, year.value); movieName.value=''; year.value=''"> Add</button>
-    </tr>
-  </table>
-</div>
 
 <h2>Movie List</h2>
 <ul>
@@ -34,4 +27,3 @@
     <button (click)="delete(movie.id)">Delete</button>
   </li>
 </ul>
-<!-- <app-movie-detail [movie]="selectedMovie"></app-movie-detail> -->
